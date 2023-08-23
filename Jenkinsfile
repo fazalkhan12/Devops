@@ -5,6 +5,10 @@ pipeline
         VERSION = "${env.BUILD_ID}"
     }
 stages{
+    stage('Initialize'){
+        def dockerHome = tool 'docker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
     stage("sonar quality check"){
         agent{
             docker{
